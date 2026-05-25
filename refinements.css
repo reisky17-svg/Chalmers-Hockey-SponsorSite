@@ -2248,6 +2248,101 @@
   background: rgba(200, 36, 58, 0.08) !important;
   color: var(--red-2, #c8243a) !important;
 }
+
+/* Reach Main Layout (60/40 Split) */
+.reach-main-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr; /* 61/39 split approx */
+  gap: 3.5rem;
+  align-items: stretch;
+  margin-bottom: 2.5rem;
+}
+
+.reach-content-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reach-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 1rem !important;
+}
+
+.reach-hero-line {
+  display: inline-block !important; /* Wrap tightly */
+  font-family: 'Big Shoulders Display', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--red-2, #c8243a);
+  margin: 0.5rem 0 1.2rem;
+  padding: 0.4rem 1rem 0.5rem;
+  background: rgba(166, 25, 46, 0.12);
+  border-left: 3px solid var(--red-2, #c8243a);
+  border-radius: 0 6px 6px 0;
+}
+
+.reach-intro {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 52ch;
+  margin-bottom: 2rem;
+}
+
+.reach-image-side {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.reach-image-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Featured metric inside the column */
+.reach-content-side .metric.featured {
+  margin-top: auto;
+  padding: 1.8rem 2rem !important;
+  min-height: auto !important;
+}
+
+/* Statistics Grid below */
+.reach-sub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem !important; /* Increased gap */
+}
+
+/* Brighter small text for readability */
+.featured-date, 
+.me-sub, 
+.reach-bench-note, 
+.reach-trust {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+@media (max-width: 900px) {
+  .reach-main-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .reach-image-side {
+    aspect-ratio: 16 / 9;
+    max-height: 350px;
+  }
+  .reach-sub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .reach-cta-ghost:hover {
   background: rgba(200, 36, 58, 0.2) !important;
   border-color: var(--red-2, #c8243a) !important;
