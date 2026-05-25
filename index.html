@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Preload LCP hero image — responsive: mobile gets smaller variant -->
+<link rel="preload" as="image" href="assets/photos/player-hero-cropped-mobile.webp" type="image/webp" fetchpriority="high" media="(max-width:768px)">
+<link rel="preload" as="image" href="assets/photos/player-hero-cropped.webp" type="image/webp" fetchpriority="high" media="(min-width:769px)">
+
+<title>Chalmers Hockey · Sponsra studenthockeyn</title>
+
+<!-- Critical CSS: nav + base + fade-in/reveal initial states — prevents flash of unstyled content
+     Full styles applied via async main.min.css + refinements.min.css below. -->
+<style>
+:root{--bg:#060f1c;--bg-2:#0C2340;--text:#f4f7fb;--muted:#8ba4c8;--red:#A6192E;--red-2:#c8243a;--red-glow:rgba(166,25,46,0.4);--border:rgba(255,255,255,0.08);--max:1140px;--reveal-duration:0.8s;--section-pad:clamp(6rem, 12vh, 10rem)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(6,15,28,0.78);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0.85rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.brand{display:flex;align-items:center;gap:0.7rem;font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:1.05rem;letter-spacing:0.04em;text-transform:uppercase}
+.brand-logo{width:38px;height:38px;flex-shrink:0}
+.nav-links{display:flex;gap:1.8rem;list-style:none;font-size:0.85rem;color:var(--muted);font-weight:500}
+.nav-cta{padding:0.55rem 1.1rem;background:var(--red);color:white;border-radius:6px;font-weight:700;font-size:0.82rem;letter-spacing:0.02em}
+.nav-cta--secondary{background:transparent;color:white;border:1.5px solid rgba(255,255,255,0.45)}
+@media(max-width:820px){.nav-links{display:none}}
+.hero{position:relative;min-height:clamp(720px,100vh,1080px);overflow:hidden}
+section{padding:var(--section-pad) 1.4rem}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;animation:fadeUp var(--reveal-duration) ease forwards}
+.fade-in.d1{animation-delay:0.1s}
+.fade-in.d2{animation-delay:0.25s}
+.fade-in.d3{animation-delay:0.4s}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+
+<!-- Preconnect for Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Async Google Fonts (display=swap already handles FOUT; async removes render-blocking request) -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet"></noscript>
+
+<!-- Preload + sync CSS — preload starts fetch early, sync link blocks render until ready (prevents CLS from late injection) -->
+<link rel="preload" href="main.css" as="style">
+<link rel="stylesheet" href="main.css">
+<link rel="preload" href="refinements.css?v=5" as="style">
+<link rel="stylesheet" href="refinements.css?v=5">
+
+<!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://reisky17-svg.github.io/Chalmers-Hockey-SponsorSite/">
+<meta property="og:title" content="Chalmers Hockey · Sponsra studenthockeyn">
+<meta property="og:description" content="2,4 miljoner organiska visningar på TikTok och Instagram. 0 kr i annonsbudget. Sponsorpaket 26/27 från 5 000 kr — 24x billigare än TikTok Ads.">
+<meta property="og:image" content="https://reisky17-svg.github.io/Chalmers-Hockey-SponsorSite/assets/og-image.jpg">
+<meta property="og:image:alt" content="Chalmers Blue McRangers firar medaljer i SUHL">
+<meta property="og:site_name" content="Chalmers Hockey">
+<meta property="og:locale" content="sv_SE">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://reisky17-svg.github.io/Chalmers-Hockey-SponsorSite/">
+<meta name="twitter:title" content="Chalmers Hockey · Sponsra studenthockeyn">
+<meta name="twitter:description" content="2,4 miljoner organiska visningar. 0 kr i annonsbudget. Sponsorpaket 26/27 från 5 000 kr.">
+<meta name="twitter:image" content="https://reisky17-svg.github.io/Chalmers-Hockey-SponsorSite/assets/og-image.jpg">
+<meta name="twitter:image:alt" content="Chalmers Blue McRangers firar medaljer i SUHL">
+
+<!-- Additional SEO -->
+<meta name="description" content="Chalmers Blue McRangers — Göteborgs näst äldsta ishockeyförening. 2,4M+ organiska visningar på TikTok/Instagram. Sponsorpaket 26/27 med priser från 5 000 kr/år.">
+<meta name="keywords" content="sponsring, ishockey, Chalmers, SUHL, studenthockey, Göteborg, marknadsföring, varumärkesexponering">
+<meta name="author" content="Chalmers Blue McRangers">
+</head>
+<body>
+
+<!-- =============== NAV =============== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="Chalmers Hockey">
+      <span class="brand-logo" aria-hidden="true"></span>
+      <span>Chalmers Hockey</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#paket">Matchstället</a></li>
+      <li><a href="#reach">Räckvidd</a></li>
+      <li><a href="#videos">Videor</a></li>
+      <li><a href="#calc">Kalkylator</a></li>
+      <li><a href="#partners">Partners</a></li>
+    </ul>
+    <a href="https://chalmershockey.se/" class="nav-cta nav-cta--secondary" target="_blank" rel="noopener noreferrer">Vår hemsida</a>
+    <a href="#contact" class="nav-cta">Hör av dig</a>
+  </div>
+</nav>
+
+<!-- =============== HERO (REFINED) =============== -->
+<header class="hero hero--refined" data-hero-layout="editorial" data-screen-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="hero-iceglow" aria-hidden="true"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="hero-stadium" aria-hidden="true">
+    <img src="assets/photos/entry-pyro.jpg" alt="" width="1503" height="1000" fetchpriority="low" decoding="async">
+  </div>
+  <div class="hero-fireworks hero-fireworks--off" aria-hidden="true">
+    </div>
+  <div class="hero-inner hero-grid">
+    <div class="hero-text">
+      <div class="hero-eyebrow-row fade-in" style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem;">
+        <span class="eyebrow" style="margin-bottom: 0;">Sponsorpaket 26/27</span>
+      </div>
+      <h1 class="display fade-in d1">
+        Vi tar<br class="hero-br-mob"> studenthockeyn<br class="hero-br-mob"> <span class="accent" style="height: 89px; padding: 0px 9px 4px">framåt.</span>
+        <span class="hero-since">Sedan 40-talet.</span>
+      </h1>
+      <p class="lead fade-in d2">Chalmers Blue McRangers är Göteborgs näst äldsta ishockeyförening — drivs av studenter som brinner för hockey, gemenskap och att göra universitetsidrottten tillgänglig för fler. 
+Vi spelar i SUHL, en av Sveriges snabbast växande ligor — och det här är bara början på något stort. Som sponsor stöttar du studentidrotten, blivande ingenjörer och en föreningskultur, samtidigt som ni får exponering mot över 2,4 miljoner människor.</p>
+      <div class="fade-in d3 hero-ctas">
+        <a href="#calc" class="btn-primary">Se hur du kan stötta oss →</a>
+        <a href="#paket" class="btn-ghost">Se lediga zoner</a>
+      </div>
+      <div class="hero-stats fade-in d3" aria-label="Snabbfakta">
+        <div class="hero-stat">
+          <div class="hero-stat-num">2,4<span class="unit">M+</span></div>
+          <div class="hero-stat-label">organisk räckvidd 12 mån</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">53</div>
+          <div class="hero-stat-label">aktiva medlemmar</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual fade-in d2" aria-hidden="true">
+    <div class="hero-player-wrap">
+      <picture>
+        <source media="(max-width:768px)" srcset="assets/photos/player-hero-cropped-mobile.webp" type="image/webp">
+        <source srcset="assets/photos/player-hero-cropped.webp" type="image/webp">
+        <img class="hero-player" src="assets/photos/player-hero-cropped.png" alt="Chalmers Hockey-spelare som firar mål" width="2812" height="3892" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+  </div>
+  <div class="hero-suhl hero-suhl--right" aria-label="Svenska Universitetshockeyligan">
+    <img src="assets/logos/suhl-white.png" alt="SUHL Logo" width="3711" height="749">
+  </div>
+</header>
+
+<!-- =============== DEM NI STÖTTAR (SM-GULD) =============== -->
+<section class="support-section" id="support" data-screen-label="Meriter" data-meriter-layout="split">
+  <div class="container">
+    <div class="support-grid">
+      <div class="support-image reveal">
+        <img src="assets/photos/team-portrait.jpg" alt="Chalmers Blue McRangers" width="667" height="1000" loading="lazy" decoding="async">
+      </div>
+      <div class="support-text reveal">
+        <span class="eyebrow">Det är dem ni stöttar.</span>
+        <h2>Studenter som <span class="accent">vinner.</span></h2>
+        <p class="support-lead">
+          Studenter som balanserar heltidsstudier med idrott.
+        </p>
+        <p class="support-body">
+          Ert varumärke på matchstället syns i varje hemmamatch, varje highlight-klipp och varje lagfoto. Ni är inte bara med på resan — ni blir en del av historien.
+        </p>
+        <div class="support-stats merit-grid">
+          <div class="merit-box">
+            <strong>SUHL Guld</strong>
+            <span>2023, 2024</span>
+          </div>
+          <div class="merit-box">
+            <strong>SUHL Brons</strong>
+            <span>2025, 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== MATCHSTÄLLET =============== -->
+<section class="jersey-section" id="paket" style="padding-bottom: calc(var(--section-pad) / 2)">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lediga platser 26/27</span>
+      <h2>Här syns ni på matchstället.</h2>
+      <p>Klicka på en bokstavszon för pris och detaljer. Gröna zoner är lediga, röda är bokade t.o.m. 2027 — väntelista möjlig.</p>
+    </div>
+
+    <div class="jersey-stage" data-jersey-style="photo">
+      <!-- Vänster: real-photo mockup med interaktiva hotspots -->
+      <div class="jersey-col">
+
+        <div class="jersey-toggle reveal" role="group" aria-label="Visa mockup">
+          <button type="button" class="active" data-view="front" aria-pressed="true">Tröja fram</button>
+          <button type="button" data-view="back" aria-pressed="false">Tröja bak</button>
+          <button type="button" data-view="pants-front" aria-pressed="false">Byxor fram</button>
+          <button type="button" data-view="pants-back" aria-pressed="false">Byxor bak</button>
+        </div>
+
+        <!-- === TRÖJA FRAM (foto) === -->
+        <div class="jersey-photo-mockup reveal active" data-mockup="front" aria-label="Matchtröja framifrån med sponsorzoner">
+          <div class="jersey-photo-frame">
+            <img class="jersey-photo" src="assets/mockups/jersey-front-clean.png" alt="Matchtröja framifrån" width="1920" height="1823" loading="lazy" decoding="async">
+            <div class="hotspot-layer">
+              <button class="hotspot free" data-pos="pos_X" style="left:32%;top:20%" aria-label="Zon X vänster axel — ledig"><span>X</span></button>
+              <button class="hotspot free" data-pos="pos_X" style="left:70%;top:20%" aria-label="Zon X höger axel — ledig"><span>X</span></button>
+              <button class="hotspot taken" data-pos="pos_E" style="left:39%;top:28%" aria-label="Zon E vänster bröst — bokad av Joluca"><span>E</span></button>
+              <button class="hotspot free"  data-pos="pos_F" style="left:50.5%;top:28.5%" aria-label="Zon F bröst centralt — ledig"><span>F</span></button>
+              <button class="hotspot taken" data-pos="pos_E" style="left:61%;top:28%" aria-label="Zon E höger bröst — bokad av Joluca"><span>E</span></button>
+              <button class="hotspot free" data-pos="pos_H" style="left:22%;top:36%" aria-label="Zon H vänster arm — ledig"><span>H</span></button>
+              <button class="hotspot free" data-pos="pos_H" style="left:78%;top:36%" aria-label="Zon H höger arm — ledig"><span>H</span></button>
+              <button class="hotspot free" data-pos="pos_C" style="left:50.5%;top:85.5%" aria-label="Zon C nederkant — ledig"><span>C</span></button>
+            </div>
+          </div>
+          <div class="jersey-mockup-label"><span class="lbl-num">01</span> Matchtröja · framifrån</div>
+        </div>
+
+        <!-- === TRÖJA BAK (foto) === -->
+        <div class="jersey-photo-mockup reveal" data-mockup="back" hidden aria-label="Matchtröja bakifrån med sponsorzoner">
+          <div class="jersey-photo-frame">
+            <img class="jersey-photo" src="assets/mockups/jersey-back-zones.png" alt="Matchtröja bakifrån" width="2138" height="2016" loading="lazy" decoding="async">
+            <div class="hotspot-layer">
+              <button class="hotspot taken" data-pos="pos_D" style="left:51.5%;top:36%" aria-label="Zon D rygg — bokad av Sano Marin"><span>D</span></button>
+            </div>
+          </div>
+          <div class="jersey-mockup-label"><span class="lbl-num">02</span> Matchtröja · bakifrån</div>
+        </div>
+
+        <!-- === BYXOR FRAM === -->
+        <div class="jersey-photo-mockup reveal" data-mockup="pants-front" hidden aria-label="Matchbyxor framifrån med sponsorzoner">
+          <div class="jersey-photo-frame">
+            <img class="jersey-photo" src="assets/mockups/pants-front-clean.png" alt="Matchbyxor framifrån" width="2112" height="1762" loading="lazy" decoding="async">
+            <div class="hotspot-layer">
+              <button class="hotspot taken pants-zone" data-pos="pos_A" style="left:33%;top:70%" aria-label="Zon A vänster lår — bokad av Löfbergs"><span>A</span></button>
+              <button class="hotspot taken pants-zone" data-pos="pos_A" style="left:67%;top:70%" aria-label="Zon A höger lår — bokad av Löfbergs"><span>A</span></button>
+            </div>
+          </div>
+          <div class="jersey-mockup-label"><span class="lbl-num">03</span> Matchbyxor · framifrån</div>
+        </div>
+
+        <!-- === BYXOR BAK === -->
+        <div class="jersey-photo-mockup reveal" data-mockup="pants-back" hidden aria-label="Matchbyxor bakifrån med sponsorzoner">
+          <div class="jersey-photo-frame">
+            <img class="jersey-photo" src="assets/mockups/pants-back-clean.png" alt="Matchbyxor bakifrån" width="2112" height="1779" loading="lazy" decoding="async">
+            <div class="hotspot-layer">
+              <button class="hotspot free pants-zone" data-pos="pos_B" style="left:33%;top:70%" aria-label="Zon B vänster baksida lår — ledig"><span>B</span></button>
+              <button class="hotspot free pants-zone" data-pos="pos_B" style="left:67%;top:70%" aria-label="Zon B höger baksida lår — ledig"><span>B</span></button>
+            </div>
+          </div>
+          <div class="jersey-mockup-label"><span class="lbl-num">04</span> Matchbyxor · bakifrån</div>
+        </div>
+
+        <!-- Mockup-rad: thumbnail strip för aktuell vy -->
+        <div class="mockup-strip" aria-hidden="true">
+          <button class="strip-thumb active" data-view="front"><img src="assets/mockups/jersey-front-clean.png" alt="" width="1920" height="1823" loading="lazy" decoding="async"></button>
+          <button class="strip-thumb" data-view="back"><img src="assets/mockups/jersey-back-zones.png" alt="" width="2138" height="2016" loading="lazy" decoding="async"></button>
+          <button class="strip-thumb" data-view="pants-front"><img src="assets/mockups/pants-front-clean.png" alt="" width="2112" height="1762" loading="lazy" decoding="async"></button>
+          <button class="strip-thumb" data-view="pants-back"><img src="assets/mockups/pants-back-clean.png" alt="" width="2112" height="1779" loading="lazy" decoding="async"></button>
+        </div>
+      </div>
+
+      <!-- Höger: legend + intro -->
+      <div class="jersey-aside reveal">
+        <div class="jersey-legend-card">
+          <h3>Så funkar det</h3>
+          <div class="legend-row"><span class="sw free"></span> <strong>Grön</strong>&nbsp;— ledig 26/27, klicka på en bokstav för detaljer</div>
+          <div class="legend-row"><span class="sw taken"></span> <strong>Röd</strong>&nbsp;— bokad t.o.m. 2027 (väntelista möjlig)</div>
+          <p class="legend-note">Lediga zoner pulserar svagt. Klicka på en bokstav (<strong>C, D, E, F, H, X, A, B</strong>) för pris, status och möjlighet att maila oss direkt.</p>
+        </div>
+
+        <div class="jersey-legend-card">
+          <h3>Zonöversikt</h3>
+          <ul class="zone-list">
+            <li><span class="zl-letter">C</span><span class="zl-name">Mage</span><span class="zl-price">10 000 kr</span></li>
+            <li><span class="zl-letter">H</span><span class="zl-name">Armar</span><span class="zl-price">8 000 kr</span></li>
+            <li><span class="zl-letter">E</span><span class="zl-name">Axlar fram</span><span class="zl-price">10 000 kr</span></li>
+            <li><span class="zl-letter">F</span><span class="zl-name">Bröst</span><span class="zl-price">15 000 kr</span></li>
+            <li><span class="zl-letter">X</span><span class="zl-name">Axlar</span><span class="zl-price">8 000 kr</span></li>
+            <li><span class="zl-letter">D</span><span class="zl-name">Rygg</span><span class="zl-price">15 000 kr</span></li>
+            <li><span class="zl-letter">A</span><span class="zl-name">Byxor fram</span><span class="zl-price">15 000 kr</span></li>
+            <li><span class="zl-letter">B</span><span class="zl-name">Byxor bak</span><span class="zl-price">10 000 kr</span></li>
+          </ul>
+        </div>
+
+        <div class="jersey-legend-card">
+          <h3>Bra att veta</h3>
+          <p style="font-size:0.92rem; color:var(--muted); line-height:1.65">
+            Tröjan bärs 10+ hemmamatcher per säsong plus borta- och slutspelsmatcher. Den syns dessutom i samtliga TikTok- och Instagram-inlägg vi publicerar.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="jersey-cta-wrap reveal">
+      <a href="#calc" class="btn-calc-cta">
+        Intresserad av ett paket? <span class="accent">Testa kalkylatorn →</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- =============== REACH METRICS =============== -->
+<section class="reach" id="reach" style="padding-top: calc(var(--section-pad) / 2)">
+  <div class="container">
+    <div class="section-head reveal reach-head">
+      <span class="eyebrow"><span class="live-dot"></span>Räckvidd senaste 12 månaderna</span>
+      <h2>100 % organisk räckvidd.<br>2,4 miljoner visningar.</h2>
+      <div class="reach-hero-line">0 kr i annonsbudget.</div>
+      <p>Allt nedan är organiskt — TikTok och Instagram, klipp och inlägg som folk själva väljer att titta på. Samma video går på båda plattformarna; ni betalar för en plats, räckvidden multipliceras.</p>
+    </div>
+    <div class="reach-grid">
+      <div class="metric featured reveal" data-target="2400000" data-format="abbrev" data-suffix="+">
+        <div class="featured-num tnum" data-counter>0</div>
+        <div class="featured-text">
+          <span class="platform-tag combined">TikTok + Instagram</span>
+          <strong>Kombinerad räckvidd</strong>
+          <div class="featured-date">Jun 2025 – Maj 2026</div>
+        </div>
+      </div>
+      <div class="metric reveal" data-target="45399" data-format="number">
+        <span class="platform-tag tiktok">TikTok</span>
+        <div class="label">Snitt views / video — 25/26</div>
+        <div class="value tnum" data-counter>0</div>
+        <div class="metric-engagement">
+          <div class="me-vs-block">
+            <div class="me-vs-row">
+              <span class="me-vs-label">Vår ER</span>
+              <span class="me-vs-num me-vs-num--ours">4,92 %</span>
+            </div>
+            <div class="me-vs-bar me-vs-bar--ours"></div>
+            <div class="me-vs-row">
+              <span class="me-vs-label">TikTok-snitt</span>
+              <span class="me-vs-num me-vs-num--bench">3,7 %</span>
+            </div>
+            <div class="me-vs-bar me-vs-bar--bench"></div>
+          </div>
+          <span class="me-sub">Engagement rate · benchmark Showca.se 2026</span>
+        </div>
+      </div>
+      <div class="metric reveal" data-target="259000" data-format="number">
+        <span class="platform-tag insta">Instagram</span>
+        <div class="label">Bästa reel</div>
+        <div class="value tnum" data-counter>0</div>
+        <div class="metric-engagement">
+          <span class="me-sub">+6 fler reels över 60 000 visningar · återkommande resultat, inte engångsslump</span>
+        </div>
+      </div>
+    </div>
+    <div class="reach-bench-note reveal">
+      Engagement-benchmarks: Showca.se TikTok Influencer Rates 2026 (TikTok-snitt 3,7 %, Instagram-snitt 0,48 %).
+    </div>
+
+    <!-- Cost comparison callout -->
+    <div class="cost-callout reveal">
+      <div class="cost-text">
+        <div class="cc-rows">
+          <div class="cc-row">
+            <span class="cc-label">Köpa samma räckvidd via TikTok Ads:</span>
+            <span class="cc-value cc-bad cc-strike" title="Uträkning: 2 400 000 views ÷ 1 000 × 50 kr CPM = 120 000 kr">~120 000 kr<sup>*</sup></span>
+          </div>
+          <div class="cc-row cc-row--hero">
+            <span class="cc-label">Vårt baspaket:</span>
+            <span class="cc-value cc-good cc-hero">5 000 kr</span>
+          </div>
+          <div class="cc-savings"><span class="cc-savings-pill">24× billigare</span></div>
+        </div>
+        <span>Och då räknar vi inte med att ni får sponsorkontext, varumärkesassociation med ett studentlag och en plats i innehåll publiken redan tittar på.</span>
+        <div class="cc-footnote">
+          <sup>*</sup> Konservativt räknat på 50 kr CPM. Sveriges faktiska TikTok Ads-spann är 70–140 kr CPM — den verkliga kostnaden skulle ligga närmare 180–240 000 kr. Källor: Megadigital TikTok Ad Pricing 2025, Trendtrack TikTok Ad Costs 2025.
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA pair -->
+    <div class="reach-cta reveal">
+      <a href="#calc" class="btn-primary reach-cta-primary">Räkna ut ert pris →</a>
+      <a href="#contact" class="btn-ghost reach-cta-ghost">Hör av dig</a>
+    </div>
+
+    <!-- Trust badge -->
+    <div class="reach-trust reveal">
+      <span class="rt-check" aria-hidden="true">✓</span>
+      Data verifierad via TikTok Analytics-export och Instagram Insights. Underlag delas på begäran.
+    </div>
+  </div>
+</section>
+
+<!-- =============== VIDEOS =============== -->
+<section class="videos-section" id="videos" data-screen-label="Videos">
+  <div class="container">
+    <!-- ===== TOP PERFORMERS — social proof under räckvidd ===== -->
+    <div class="top-performers reveal" style="margin-top: 0; border-top: none; margin-bottom: 6rem;">
+      <div class="tp-head">
+        <span class="tp-eyebrow">Exempel: när en video slår in</span>
+        <h3>Varje viral video gör ert logoutrymme sjukt billigt.</h3>
+        <p>Dessa är inte selekterade exempel — vi har 15+ klipp som har passerat 40 000 visningar under säsongen 25/26.</p>
+      </div>
+      <div class="tp-grid">
+        <div class="tp-card">
+          <div class="tp-platform tt">TikTok</div>
+          <div class="tp-views tnum">321 665</div>
+          <div class="tp-caption">"Snyggast straff vinner..."</div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-platform tt">TikTok</div>
+          <div class="tp-views tnum">185 478</div>
+          <div class="tp-caption">"Ny coach! Mindre snack, mer smäll"</div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-platform tt">TikTok</div>
+          <div class="tp-views tnum">126 945</div>
+          <div class="tp-caption">"Guld med Chalmers Hockey eller guld i väggen?"</div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-platform tt">TikTok</div>
+          <div class="tp-views tnum">116 689</div>
+          <div class="tp-caption">"Idag känner vi oss tillbakalutade..."</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-head reveal">
+      <span class="eyebrow">Innehall som når ut</span>
+      <h2>Klippen som drivit räckvidden.</h2>
+      <p>Tre klipp som visar vilket content vi gör.</p>
+    </div>
+    <div class="videos-grid reveal">
+      <div class="video-card">
+        <div class="video-thumb">
+          <video 
+            src="assets/videos/Straff turre.mp4" 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            controls
+            controlsList="nopictureinpicture"
+            disablePictureInPicture
+            poster="assets/photos/teammates.jpg"
+            preload="metadata"
+            style="width: 100%; height: 100%; object-fit: cover;">
+          </video>
+        </div>
+        <div class="video-meta">
+          <span class="video-platform">Video</span>
+        </div>
+        <h3 class="video-title">Straffturnering</h3>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <video 
+            src="assets/videos/tränare_simonsson.mp4" 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            controls
+            controlsList="nopictureinpicture"
+            disablePictureInPicture
+            poster="assets/photos/player-2.png"
+            preload="metadata"
+            style="width: 100%; height: 100%; object-fit: cover;">
+          </video>
+        </div>
+        <div class="video-meta">
+          <span class="video-platform">Video</span>
+        </div>
+        <h3 class="video-title">Coach Simonsson</h3>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb">
+          <video 
+            src="assets/videos/pulsen_på_festu.mp4" 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            controls
+            controlsList="nopictureinpicture"
+            disablePictureInPicture
+            poster="assets/photos/entry-pyro.jpg"
+            preload="metadata"
+            style="width: 100%; height: 100%; object-fit: cover;">
+          </video>
+        </div>
+        <div class="video-meta">
+          <span class="video-platform">Video</span>
+        </div>
+        <h3 class="video-title">Pulsen på FestU</h3>
+      </div>
+    </div>
+    <p class="videos-note">Fler exemplar finns på @chalmershockey</p>
+  </div>
+</section>
+
+<!-- =============== CALCULATOR =============== -->
+<section class="calc-section" id="calc" data-calc-style="default">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Räkna ut priset</span>
+      <h2>Vad det skulle kosta.</h2>
+      <p>Välj budget och hur ni vill synas. Vi visar vad ni får, vad räckvidden landar på, och hur priset jämför med betald annonsering.</p>
+    </div>
+
+    <!-- ===== STATS PROOF — räckvidd innan kalkylatorn ===== -->
+    <div class="stats-proof reveal">
+      <div class="stats-proof-head">
+        <span class="stats-proof-eyebrow">Såhär stora är vi egentligen</span>
+        <span class="stats-proof-tag">Uppdaterad maj 2026</span>
+      </div>
+      <div class="stats-proof-grid">
+        <div class="sp-stat">
+          <div class="sp-num tnum">1,3<span class="sp-unit">M</span></div>
+          <div class="sp-label">TikTok-views<br>säsong 25/26</div>
+        </div>
+        <div class="sp-stat">
+          <div class="sp-num tnum">5K+</div>
+          <div class="sp-label">Följare kombinerat<br>TikTok + Instagram</div>
+        </div>
+        <div class="sp-stat">
+          <div class="sp-num tnum">383</div>
+          <div class="sp-label">Snittpublik<br>per match</div>
+        </div>
+        <div class="sp-stat">
+          <div class="sp-num tnum">642</div>
+          <div class="sp-label">Publikrekord<br>säsong 24/25</div>
+        </div>
+      </div>
+      <div class="stats-proof-foot">
+        Data: TikTok Analytics 25/26 · Instagram Insights maj 2026 · intern publikstatistik SUHL
+      </div>
+    </div>
+
+    <div class="calc-wrapper">
+      <div class="calc-form reveal">
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">1</span> Budget / år</div>
+          <div class="budget-grid" id="budget-grid">
+            <button class="budget-btn" data-budget="5000">5 000 kr</button>
+            <button class="budget-btn" data-budget="10000">10 000 kr</button>
+            <button class="budget-btn active" data-budget="15000">15 000 kr</button>
+            <button class="budget-btn" data-budget="20000">20 000 kr</button>
+            <button class="budget-btn" data-budget="30000">30 000+ kr</button>
+          </div>
+        </div>
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">2</span> Vad är ert mål?</div>
+          <div class="step-hint">Hjälper oss skräddarsy förslag som matchar vad ni vill uppnå.</div>
+          <select class="select" id="audience-select" aria-label="Vad är ert mål?">
+            <option value="rekrytera">Rekrytera studenter (tech, ingenjör, ekonomi)</option>
+            <option value="ungdom">Nå ungdomar &amp; studenter i Göteborg</option>
+            <option value="varumarke">Varumärkesbygge — bli känt namn på campus</option>
+            <option value="forsaljning">Driva försäljning lokalt (mat, dryck, retail)</option>
+            <option value="b2b">B2B-synlighet mot framtida ingenjörer</option>
+            <option value="annat">Annat — vi har en specifik idé</option>
+          </select>
+          <div class="goal-custom-hint" id="goal-custom-hint" hidden>
+            Berätta gärna mer när du hör av dig — vi bygger gärna något skräddarsytt utanför våra standardpaket.
+          </div>
+        </div>
+        <div class="calc-step">
+          <div class="step-label"><span class="step-num">3</span> Exponering · välj flera</div>
+          <div class="chips" id="exposure-chips">
+            <button class="chip active" data-exp="matchtroja">Matchtröja</button>
+            <button class="chip" data-exp="byxor">Byxöverdrag</button>
+            <button class="chip" data-exp="traningstroja">Träningströja</button>
+            <button class="chip" data-exp="fysisk">Fysisk marknadsföring</button>
+            <button class="chip active" data-exp="social">Inlägg sociala medier</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-result reveal" id="calc-result"></div>
+    </div>
+
+    <!-- ===== CUSTOM PACKAGE CALLOUT ===== -->
+    <div class="custom-package reveal" id="custom-package">
+      <div class="cp-text">
+        <span class="cp-eyebrow">Saknar ni något i paketen?</span>
+        <h3>Våra rekommenderade paket är en startpunkt — inte taket.</h3>
+        <p>Vi bygger gärna något helt skräddarsytt: matchsponsorat, produktplaceringar, festarrangemang eller annat ni har en idé om.</p>
+      </div>
+      <a href="#" id="cp-cta-link" class="cp-cta" onclick="event.preventDefault(); openContactModal('custom')">Bygg eget paket med oss →</a>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============== PARTNERS =============== -->
+<section class="partners-section" id="partners">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">I gott sällskap</span>
+      <h2>Företag som redan stöttar oss.</h2>
+    </div>
+    <div class="partners-grid reveal">
+      <div class="partner-card" title="Sano Marin · Rygg (D)"><img src="assets/logos/sano.png" alt="Sano Marin" width="3044" height="677" loading="lazy" decoding="async"></div>
+      <div class="partner-card" title="Joluca · Bröst sida (E)"><img src="assets/logos/joluca.png" alt="Joluca" width="735" height="228" loading="lazy" decoding="async"></div>
+      <div class="partner-card" title="Aros · Stödpartner"><img src="assets/logos/aros.png" alt="Aros" width="1717" height="570" loading="lazy" decoding="async"></div>
+      <div class="partner-card" title="Nivåbyggen · Stödpartner"><img src="assets/logos/nivabyggen.png" alt="Nivåbyggen" width="1920" height="552" loading="lazy" decoding="async"></div>
+      <div class="partner-card" title="Löfbergs · Stödpartner"><img src="assets/logos/lofbergs-cropped.png" alt="Löfbergs" width="991" height="369" loading="lazy" decoding="async"></div>
+      <a href="#contact" class="partner-card partner-card--tease" title="Bli nästa partner 26/27" onclick="event.preventDefault(); openContactModal('partner')">
+        <span class="tease-plus" aria-hidden="true">+</span>
+        <span class="tease-label">Bli nästa<br>partner</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CONTACT =============== -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <span class="eyebrow">Nästa steg</span>
+    <h2>Vill du vara <span class="accent">med</span>?</h2>
+    <p class="lead">
+      Vi är ett gäng studenter som driver en hockeyklubb på fritiden. Skicka ett mail så förklarar vi vad vi gör, vad ni får, och varför priset funkar.
+    </p>
+    <div class="contact-grid">
+      <a href="#" class="btn-primary" onclick="event.preventDefault(); openContactModal('contact')">📩 chalmershockey@gmail.com</a>
+    </div>
+    <div class="contact-info">
+      <span><a href="https://www.tiktok.com/@chalmershockey" target="_blank" rel="noopener">TikTok</a></span>
+      <span><a href="https://www.instagram.com/chalmershockey" target="_blank" rel="noopener">Instagram</a></span>
+      <span style="color:var(--text);font-weight:600">Slottsskogsrinken, Göteborg</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"></div>
+  <div class="footer-text">
+    © Chalmers Blue McRangers · Sponsringsdashboard 26/27
+  </div>
+</footer>
+
+<!-- Tooltip + Modal -->
+<div id="zone-tooltip" role="tooltip" aria-hidden="true"></div>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modal-close" aria-label="Stäng">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- Contact Form Modal -->
+<div class="cfm-backdrop" id="cfm-backdrop" aria-hidden="true">
+  <div class="cfm" id="cfm" role="dialog" aria-modal="true" aria-labelledby="cfm-title">
+    <button class="cfm-close" id="cfm-close" aria-label="Stäng">✕</button>
+    <div id="cfm-body"></div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+<script src="refinements.js?v=4"></script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "027404b8d89c455f98b5e69a7b0d9174"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>
