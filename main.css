@@ -1609,6 +1609,17 @@ footer {
   color: var(--text);
   flex-shrink: 0;
 }
+.zone-list li.free .zl-letter {
+  background: rgba(52, 211, 153, 0.15);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #34d399;
+}
+.zone-list li.taken .zl-letter {
+  background: rgba(166, 25, 46, 0.15);
+  border-color: rgba(166, 25, 46, 0.4);
+  color: var(--red);
+}
+}
 
 @media print {
   body { background: white !important; color: black !important; }
