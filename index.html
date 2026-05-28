@@ -196,6 +196,7 @@ Vi spelar i SUHL, en av Sveriges snabbast växande ligor — och det här är ba
           <button type="button" data-view="back" aria-pressed="false">Tröja bak</button>
           <button type="button" data-view="pants-front" aria-pressed="false">Byxor fram</button>
           <button type="button" data-view="pants-back" aria-pressed="false">Byxor bak</button>
+          <button type="button" data-view="helmet" aria-pressed="false">Hjälm</button>
         </div>
 
         <!-- === TRÖJA FRAM (foto) === -->
@@ -251,12 +252,26 @@ Vi spelar i SUHL, en av Sveriges snabbast växande ligor — och det här är ba
           <div class="jersey-mockup-label"><span class="lbl-num">04</span> Matchbyxor · bakifrån</div>
         </div>
 
+        <!-- === HJÄLM === -->
+        <div class="jersey-photo-mockup reveal" data-mockup="helmet" hidden aria-label="Hjälm med sponsorzoner">
+          <div class="jersey-photo-frame">
+            <img class="jersey-photo" src="assets/mockups/ny-hjalm-clean.png" alt="Hjälm" width="1920" height="1080" loading="lazy" decoding="async">
+            <div class="hotspot-layer">
+              <button class="hotspot free" data-pos="pos_Panna" style="left:50%;top:32%" aria-label="Zon I Hjälm panna — ledig"><span>I</span></button>
+              <button class="hotspot free" data-pos="pos_Sida" style="left:30%;top:19%" aria-label="Zon J Hjälm sida — ledig"><span>J</span></button>
+              <button class="hotspot free" data-pos="pos_Sida" style="left:70%;top:19%" aria-label="Zon J Hjälm sida — ledig"><span>J</span></button>
+            </div>
+          </div>
+          <div class="jersey-mockup-label"><span class="lbl-num">05</span> Hjälm · framifrån</div>
+        </div>
+
         <!-- Mockup-rad: thumbnail strip för aktuell vy -->
         <div class="mockup-strip" aria-hidden="true">
           <button class="strip-thumb active" data-view="front"><img src="assets/mockups/ny-jersey-front-clean.png" alt="" width="1920" height="1823" loading="lazy" decoding="async"></button>
           <button class="strip-thumb" data-view="back"><img src="assets/mockups/ny-jersey-back-zones.png" alt="" width="2138" height="2016" loading="lazy" decoding="async"></button>
           <button class="strip-thumb" data-view="pants-front"><img src="assets/mockups/ny-pants-front-clean.png" alt="" width="2112" height="1762" loading="lazy" decoding="async"></button>
           <button class="strip-thumb" data-view="pants-back"><img src="assets/mockups/ny-pants-back-clean.png" alt="" width="2112" height="1779" loading="lazy" decoding="async"></button>
+          <button class="strip-thumb" data-view="helmet"><img src="assets/mockups/ny-hjalm-clean.png" alt="" width="1920" height="1080" loading="lazy" decoding="async"></button>
         </div>
       </div>
 
@@ -280,6 +295,8 @@ Vi spelar i SUHL, en av Sveriges snabbast växande ligor — och det här är ba
             <li class="free zone" data-pos="pos_F" style="cursor: pointer;"><span class="zl-letter">F</span><span class="zl-name">Bröst</span><span class="zl-price">15 000 kr</span></li>
             <li class="free zone" data-pos="pos_X" style="cursor: pointer;"><span class="zl-letter">X</span><span class="zl-name">Axlar</span><span class="zl-price">8 000 kr</span></li>
             <li class="free zone" data-pos="pos_H" style="cursor: pointer;"><span class="zl-letter">H</span><span class="zl-name">Armar</span><span class="zl-price">8 000 kr</span></li>
+            <li class="free zone" data-pos="pos_Panna" style="cursor: pointer;"><span class="zl-letter">I</span><span class="zl-name">Hjälm panna</span><span class="zl-price">10 000 kr</span></li>
+            <li class="free zone" data-pos="pos_Sida" style="cursor: pointer;"><span class="zl-letter">J</span><span class="zl-name">Hjälm sida</span><span class="zl-price">8 000 kr</span></li>
           </ul>
         </div>
 
@@ -576,6 +593,7 @@ Vi spelar i SUHL, en av Sveriges snabbast växande ligor — och det här är ba
           <div class="chips" id="exposure-chips">
             <button class="chip active" data-exp="matchtroja">Matchtröja</button>
             <button class="chip" data-exp="byxor">Byxöverdrag</button>
+            <button class="chip" data-exp="hjalm">Hjälm</button>
             <button class="chip" data-exp="traningstroja">Träningströja</button>
             <button class="chip" data-exp="fysisk">Fysisk marknadsföring</button>
             <button class="chip active" data-exp="social">Inlägg sociala medier</button>

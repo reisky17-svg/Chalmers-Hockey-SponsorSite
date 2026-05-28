@@ -11,6 +11,8 @@ const PACKAGES = {
   pos_F: { id:'pos_F', cat:'troja', letter:'F', name:'Bröst', desc:'Den mest synliga ytan på tröjan — högt upp på bröstet, över klubbloggan.', price:15000, status:'free', reach:600000 },
   pos_X: { id:'pos_X', cat:'troja', letter:'X', name:'Axlar', desc:'Båda axlar framifrån. Lågpris-alternativ med god exponering.', price:8000, status:'free', reach:350000 },
   pos_H: { id:'pos_H', cat:'troja', letter:'H', name:'Armar', desc:'Högt på ärmen. Synlig i rörelse, sekundär plats till låg kostnad.', price:8000, status:'free', reach:280000 },
+  pos_Panna: { id:'pos_Panna', cat:'hjalm', letter:'I', name:'Hjälm panna', desc:'Placering mitt på hjälmens panna. Mycket synlig i närbilder, lagfoton och videointervjuer.', price:10000, status:'free', reach:400000 },
+  pos_Sida: { id:'pos_Sida', cat:'hjalm', letter:'J', name:'Hjälm sida', desc:'Placering på hjälmens sida. Syns bra från profilen vid spel och i rinken.', price:8000, status:'free', reach:300000 },
   bas: { id:'bas', cat:'annat', name:'Baspaket', desc:'Match-posters + digital närvaro. Grunden i alla samarbeten.', price:5000, status:'free', reach:400000 },
   traning: { id:'traning', cat:'annat', name:'Träningströja', desc:'Logga stort på magen, garanterad 3-årsexponering. 45+ spelare bär den året runt.', price:20000, status:'free', reach:1200000 },
   fysisk: { id:'fysisk', cat:'annat', name:'Fysisk på match', desc:'Eget område på hemmamatch. Pris per match — direkt face-to-face med 400–650 åskådare.', price:3000, status:'free', reach:525, reachUnit:'face-to-face kontakter/match' },
@@ -68,6 +70,15 @@ function recommend(){
       wishlist.push({ key:'byxor', label:'Byxöverdrag (Zon B)', item: PACKAGES.pos_B, priority: 3 });
     } else {
       warnings.push('Båda byxzonerna är bokade just nu — vi kan sätta er på väntelista.');
+    }
+  }
+
+  if (exposure.has('hjalm') && !items.some(i => i.cat === 'hjalm')) {
+    const free = [PACKAGES.pos_Panna, PACKAGES.pos_Sida].filter(p => p.status === 'free');
+    if (free.length > 0) {
+      wishlist.push({ key:'hjalm', label:'Hjälm', item: free[0], priority: 3.5 });
+    } else {
+      warnings.push('Alla hjälmplatser är bokade just nu — vi kan sätta er på väntelista.');
     }
   }
 
@@ -140,6 +151,7 @@ function generateMotivation(items, audience, cpm, totalReach){
   let main = '';
 
   if (has('pos_F'))        main = '<strong>Bröstplatsen (Zon F)</strong> är den mest synliga ytan på tröjan — varje närbild, varje TikTok-clip, varje matchposter.';
+  else if (has('pos_Panna')) main = '<strong>Hjälm panna (Zon I)</strong> ger fantastisk exponering i närbilder, lagfoton och i allt rörligt material vi skapar.';
   else if (has('traning')) main = '<strong>Träningströjan</strong> bärs av 45+ blivande ingenjörer året runt — garanterad 3-årsexponering till en av matchpaketets lägsta CPM.';
   else if (has('digital')) {
     const qty = items.find(i=>i.id==='digital').qty || 1;
@@ -407,7 +419,15 @@ function addToBudgetAndScroll(posId){
   state.budget = matchedBudget;
   document.querySelectorAll('.budget-btn').forEach(b => b.classList.toggle('active', +b.dataset.budget === matchedBudget));
   state.forcedPosition = posId;
-  state.exposure.add('matchtroja');
+  
+  if (p.cat === 'hjalm') {
+    state.exposure.add('hjalm');
+  } else if (p.id === 'pos_A' || p.id === 'pos_B') {
+    state.exposure.add('byxor');
+  } else if (p.cat === 'troja') {
+    state.exposure.add('matchtroja');
+  }
+  
   document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', state.exposure.has(c.dataset.exp)));
   closeModal();
   document.getElementById('calc').scrollIntoView({ behavior: 'smooth', block: 'start' });

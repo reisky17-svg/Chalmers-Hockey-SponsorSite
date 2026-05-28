@@ -320,7 +320,7 @@
       wrap.classList.add('zone-photo-hero--fallback');
       wrap.innerHTML = `
         <div class="zone-fallback-icon">📸</div>
-        <div class="zone-fallback-text">Foto från bakvy<br><small>kontakta oss för referensbild</small></div>
+        <div class="zone-fallback-text">Referensbild saknas<br><small>kontakta oss för detaljerad bild av zon</small></div>
       `;
     }
     // Prepend
