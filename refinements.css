@@ -640,6 +640,15 @@
   opacity: 1;
 }
 
+/* Logos with their own solid background — show in original colours */
+.partner-card--color img {
+  max-width: 85%;
+  max-height: 100%;
+  filter: none;
+  opacity: 0.9;
+  border-radius: 8px;
+}
+
 /* Tease card — "become next partner" */
 .partner-card--tease {
   cursor: pointer;
